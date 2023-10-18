@@ -131,18 +131,23 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(size);
 	aom = va_arg(types, unsigned int);
 	aom2 = 2147483648;
+
 	Arr[0] = aom / aom2;
 	for (as = 1; as < 32; as++)
+	{
 		aom2 = aom2 / 2;
 		Arr[as] = (aom / aom2) % 2;
+	}
 	for (as = 0, sum = 0, P_counter = 0; as < 32; as++)
 	{
 		sum = sum + Arr[as];
 		if (sum || as == 31)
+		{
 			char GG = '0' + Arr[as];
 
 			write(1, &GG, 1);
 			P_counter++;
+		}
 	}
 
 	return (P_counter);
